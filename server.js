@@ -5,7 +5,7 @@ var cors = require('cors');
 
 // require and use "multer"...
 var multer = require('multer');
-var upload = multer({ dest: 'assets/' });
+var upload = multer({ dest: 'public/' });
 
 var app = express();
 
@@ -20,11 +20,14 @@ app.get('/hello', function(req, res){
   res.json({greetings: "Hello, API"});
 });
 
-app.post('/api/fileanalyse', upload.single('avatar'), function(req, res, next) {
-  debugger;
+function insertDocument(db, filepath, callback) {
+   
+}
+
+app.post('/api/fileanalyse', upload.single('avatar'), (req, res, next) => {   
   res.json({
     file: req.file,
-    body: req.body.upfile
+    body: req.body
   });
 });
 
